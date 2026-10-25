@@ -20,14 +20,15 @@ const getPluginMessages = ({
   displayName,
   description,
 }: InstalledPlugin): Record<'displayName' | 'description', MessageDescriptor> => {
-  const displayNameMessage = {
-    id: `global.plugins.${name}`,
-    defaultMessage: displayName,
-  };
-
   return {
-    displayName: displayNameMessage,
-    description: { ...displayNameMessage, defaultMessage: description },
+    displayName: {
+      id: `global.plugins.${name}`,
+      defaultMessage: displayName,
+    },
+    description: {
+      id: `global.plugins.${name}.description`,
+      defaultMessage: description,
+    },
   };
 };
 
