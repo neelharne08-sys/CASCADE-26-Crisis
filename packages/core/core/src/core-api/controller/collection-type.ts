@@ -17,7 +17,11 @@ const setCreatedResponse = (ctx: Koa.Context, created: unknown) => {
     return;
   }
 
-  const { documentId } = created as { documentId?: string };
+  const createdRecord = created as {
+    data?: { documentId?: string };
+    documentId?: string;
+  };
+  const documentId = createdRecord.data?.documentId ?? createdRecord.documentId;
 
   if (!documentId) {
     return;
